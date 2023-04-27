@@ -84,6 +84,46 @@
         alert(`Carros da Marca ${marcaFiltro}:`)
     }
 
+    function atualizarCarro() {
+    const id = prompt("Digite o ID do veículo que deseja atualizar:");
+
+    const carro = carros.find((carro) => carro.id === Number(id));
+    if (!carro) {
+        alert("Veículo não encontrado.");
+        return;
+    }
+
+    let modelo = prompt(`Modelo atual: ${carro.modelo}. Digite o novo modelo (deixe em branco para manter o valor atual):`) || carro.modelo;
+    let marca = prompt(`Marca atual: ${carro.marca}. Digite a nova marca (deixe em branco para manter o valor atual):`) || carro.marca;
+    let ano = prompt(`Ano atual: ${carro.ano}. Digite o novo ano (deixe em branco para manter o valor atual):`) || carro.ano;
+    let cor = prompt(`Cor atual: ${carro.cor}. Digite a nova cor (deixe em branco para manter o valor atual):`) || carro.cor;
+    let preco = prompt(`Preço atual: R$ ${carro.preco}. Digite o novo preço (deixe em branco para manter o valor atual):`) || carro.preco;
+
+    carro.modelo = modelo;
+    carro.marca = marca;
+    carro.ano = ano;
+    carro.cor = cor;
+    carro.preco = preco;
+
+    alert("Veículo atualizado com sucesso!");
+    menu();
+}
+
+function removerCarro() {
+    const id = prompt("Digite o ID do veículo que deseja remover:");
+
+    const carroIndex = carros.findIndex((carro) => carro.id === Number(id));
+    if (carroIndex === -1) {
+        alert("Veículo não encontrado.");
+        return;
+    }
+
+    carros.splice(carroIndex, 1);
+
+    alert("Veículo removido com sucesso!");
+    menu();
+}
+
 
 
        </script>
