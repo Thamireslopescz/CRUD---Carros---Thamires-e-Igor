@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Carros</title>
+</head>
+<body onload="menu()">
+    <h1>Bem-vindo ao sistema de CRUD de veículos:</h1>
+	<p>No momento, o sistema tem <span id="numCars"></span> carros cadastrados.</p>
+
+
+    <script>
+
+       let carros = []
+
+    function menu() {
+       const opcao = Number(prompt(`Escolha uma das opções para interagir com o sistema:
+                    1 - Cadastrar veículo
+                    2 - Listar todos os veículos
+                    3 - Filtrar veículos por marca
+                    4 - Atualizar veículo
+                    5 - Remover veículo
+                    6 - Sair do sistema`));
+       switch (opcao) {
+        case 1: 
+            cadastrarCarro()
+            break;
+        case 2: 
+            listarCarros();
+            break;
+        case 3:
+            filtrarCarros();
+            break;
+        case 4:
+            atualizar();
+            break;
+        case 5: 
+            removerCarro();
+            break;
+        case 6: 
+            alert("Saindo do sistema...")
+            break;
+            default:
+            alert ("Digite uma opção válida")
+            menu();
+       }
+    }
+
+    function cadastrarCarro() {
+        const modelo = prompt("Digite o modelo do carro: ");
+        const marca = prompt("Digite a marca do carro: ");
+        const ano = prompt("Digite o ano do veículo:");
+        const cor = prompt("Digite a cor do veículo:");
+        const preco = prompt("Digite o preço do veículo:");
+
+        const id = carros.length + 1;
+        const carro = {
+            id: id,
+            modelo: modelo,
+            marca: marca,
+            ano: ano,
+            cor: cor,
+            preco: preco
+        };
+
+        carros.push(carro);
+        alert("Veículo cadastrado com sucesso!")
+        menu();
+    }
+
+    function listarCarros() {
+        let lista = "";
+        for (const carro of carros){
+            lista += `ID: ${carro.id} | Modelo: ${carro.modelo} | Marca: ${carro.marca} | Ano: ${carro.ano} | Cor: ${carro.cor} | Preço: R$ ${carro.preco}`
+        }
+        alert(lista);
+    }
+
+    function filtrarCarros() {
+        const marcaFiltro = prompt("Digite a marca que deseja filtrar")
+        const carrosFiltrados = carros.filter( (carro) => carro.marca.toLowerCase() === marcaFiltro.toLowerCase());
+        alert(`Carros da Marca ${marcaFiltro}:`)
+    }
+
+
+
+       </script>
+
+</body>
+</html>
