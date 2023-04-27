@@ -8,13 +8,16 @@
 </head>
 <body onload="menu()">
     <h1>Bem-vindo ao sistema de CRUD de veículos:</h1>
+    <p>No momento, o sistema tem <script id="numeroCarro">0</script> carros cadastrados</p>
 	
     <script>
 
        let carros = []
+       let numeroCarro = 0;
 
     function menu() {
-        alert(`No momento, o sistema tem ${carros.length} carros cadastrados`)
+        alert(`Bem-vindo ao sistema de CRUD de veículos:
+        No momento, o sistema tem ${carros.length} carros cadastrados`)
        const opcao = Number(prompt(`Escolha uma das opções para interagir com o sistema:
                     1 - Cadastrar veículo
                     2 - Listar todos os veículos
@@ -65,6 +68,7 @@
         };
 
         carros.push(carro);
+        numeroCarro++;
         alert("Veículo cadastrado com sucesso!")
         menu();
     }
